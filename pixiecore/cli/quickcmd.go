@@ -126,8 +126,13 @@ func ubuntuRecipe(parent *cobra.Command) {
 				fatalf("Error reading flag: %s", err)
 			}
 
-			kernel := fmt.Sprintf("%s/dists/%s/main/installer-%s/current/images/netboot/ubuntu-installer/%s/linux", mirror, version, arch, arch)
-			initrd := fmt.Sprintf("%s/dists/%s/main/installer-%s/current/images/netboot/ubuntu-installer/%s/initrd.gz", mirror, version, arch, arch)
+			imageDir := "images"
+			if version[0] >= 'f' {
+				imageDir = "legacy-images"
+			}
+
+			kernel := fmt.Sprintf("%s/dists/%s/main/installer-%s/current/%s/netboot/ubuntu-installer/%s/linux", mirror, version, arch, imageDir, arch)
+			initrd := fmt.Sprintf("%s/dists/%s/main/installer-%s/current/%s/netboot/ubuntu-installer/%s/initrd.gz", mirror, version, arch, imageDir, arch)
 
 			fmt.Println(staticFromFlags(cmd, kernel, []string{initrd}, "").Serve())
 		},
