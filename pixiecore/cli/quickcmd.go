@@ -97,6 +97,7 @@ func ubuntuRecipe(parent *cobra.Command) {
 		"disco",
 		"eoan",
 		"focal",
+		"groovy",
 	}
 
 	ubuntuCmd := &cobra.Command{
