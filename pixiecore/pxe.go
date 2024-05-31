@@ -104,10 +104,10 @@ func (s *Server) validatePXE(pkt *dhcp4.Packet) (fwtype Firmware, err error) {
 	case 9:
 		fwtype = FirmwareEFIBC
 	default:
-		return 0, fmt.Errorf("unsupported client firmware type '%d' (please file a bug!)", fwt)
+		return 0, fmt.Errorf("unsupported client firmware type '%d'", fwt)
 	}
 	if s.Ipxe[fwtype] == nil {
-		return 0, fmt.Errorf("unsupported client firmware type '%d' (please file a bug!)", fwt)
+		return 0, fmt.Errorf("unsupported client firmware type '%d'", fwt)
 	}
 
 	guid := pkt.Options[97]
