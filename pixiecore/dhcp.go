@@ -116,7 +116,7 @@ func (s *Server) validateDHCP(pkt *dhcp4.Packet) (mach Machine, fwtype Firmware,
 		mach.Arch = ArchX64
 		fwtype = FirmwareEFIBC
 	default:
-		return mach, 0, fmt.Errorf("unsupported client firmware type '%d' (please file a bug!)", fwtype)
+		return mach, 0, fmt.Errorf("unsupported client firmware type '%d' (please file a bug!)", fwt)
 	}
 
 	// Now, identify special sub-breeds of client firmware based on
